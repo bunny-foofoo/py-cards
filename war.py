@@ -6,7 +6,8 @@ class TooManyRounds(Exception):
 class Player:
 	def __init__(self, hand) -> None:
 		self.hand = hand
-		self.spoils = [] # spoils of war (cards collected after rounds)
+		# spoils of war (cards collected after rounds)
+		self.spoils = []
 	
 	@property
 	def remaining(self):
@@ -57,19 +58,15 @@ class Game:
 		elif outcome == 0:
 			bounty.extend(self.player_one.draw(3))
 			bounty.extend(self.player_two.draw(3))
-			#print('went to war for', bounty)
 			self.play_round(bounty=bounty)
 
 		if outcome in (1,2):
 			self.round += 1
-			# if self.round <= 10:
-			# 	print(f"{self.round}) Player {outcome} won the round.\n")
 			if self.round == 100_000:
 				print("Game went on too long (100,000 rounds).")
 				print('Player 1:', self.player_one)
 				print('Player 2:', self.player_two)
 				raise TooManyRounds()
-			#print('bounty:', bounty, '\n')
 			for card in bounty:
 				victor.place_bottom(card)
 	
