@@ -6,3 +6,4 @@ Full 52 card deck with common actions, dealing, and hands.
 
 # Example games
 - Blackjack
+- War
